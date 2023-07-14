@@ -1,61 +1,23 @@
 # First Window
 <FirstWindow>:
     name: "first"
-    heard_speech: heard_speech
-    tts_content: tts_content
+    
     MDBoxLayout:
-        orientation: 'vertical'
-        spacing: 20
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        size_hint: .9, .95
-            
-        # Input TextField
-        MDCard:
-            padding: 20
-            elevation: 1
-            size_hint: 1, .35
-            ScrollView:
-                MDTextField:
-                    id: heard_speech
-                    disabled: True
-                    multiline: True
-                    hint_text: '    STT    '
-                    mode: "rectangle"
-                    font_style: 'Caption'
-                    color_mode: 'custom'
-                    line_color_focus: 0, 0, 0, 1
-                    line_color_normal: 0, 0, 0, 1     
-        
-        # Output TextField  
-        MDCard:
-            padding: 20
-            elevation: 1
-            size_hint: 1, .35
-            ScrollView:
-                MDTextField:
-                    id: tts_content
-                    disabled: True
-                    multiline: True
-                    hint_text: '    TTS    '
-                    mode: "rectangle"
-                    font_style: 'Caption'
-                    color_mode: 'custom'
-                    line_color_focus: 0, 0, 0, 1
-                    line_color_normal: 0, 0, 0, 1     
+        size_hint: .9, None
+        ClickableTextFieldRightIcon
 
-        # Record & Stop Button
-        MDBoxLayout:
-            size_hint: 1, .1
-            orientation: 'horizontal'
-            spacing: 10
-            MDBoxLayout:
-                size_hint_x: .4
-            MDIconButton:
-                id: rec
-                icon: 'record-circle-outline'
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                on_release:
-                    root.toggle_recording() 
-            MDBoxLayout:
-                size_hint_x: .4
-            
+
+<ClickableTextFieldRightIcon>:
+    tts_content: tts_content
+    MDTextField:
+        id: tts_content
+        multiline: True
+        mode: 'rectangle'
+        hint_text: '  Content  '
+    MDIconButton:
+        icon: 'play'
+        pos_hint: {'right': 1}
+        on_release:
+            root.speak()
+        
